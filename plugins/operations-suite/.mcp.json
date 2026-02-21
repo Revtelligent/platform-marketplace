@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "relay": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "${RELAY_MCP_URL}"],
+      "env": {
+        "RELAY_MCP_URL": "${RELAY_MCP_URL:-https://relay-platform.revtelligent.cloud/mcp}"
+      }
+    }
+  }
+}

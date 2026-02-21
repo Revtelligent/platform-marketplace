@@ -1,0 +1,23 @@
+{
+  "strictKnownMarketplaces": [
+    {
+      "source": "github",
+      "repo": "revtelligent/platform-marketplace"
+    }
+  ],
+  "extraKnownMarketplaces": {
+    "platform": {
+      "source": {
+        "source": "github",
+        "repo": "revtelligent/platform-marketplace"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "relay-connect@platform": true
+  },
+  "env": {
+    "RELAY_URL": "https://relay-platform.revtelligent.cloud",
+    "RELAY_MCP_URL": "https://relay-platform.revtelligent.cloud/mcp"
+  }
+}

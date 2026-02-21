@@ -1,0 +1,10 @@
+{
+  "name": "relay-connect",
+  "version": "1.0.0",
+  "description": "Connects to Relay platform for secure API access. Required by all Revtelligent plugins.",
+  "author": {
+    "name": "Revtelligent",
+    "email": "support@revtelligent.com"
+  },
+  "keywords": ["relay", "auth", "mcp", "infrastructure"]
+}

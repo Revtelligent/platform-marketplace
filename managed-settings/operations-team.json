@@ -1,0 +1,30 @@
+{
+  "strictKnownMarketplaces": [
+    {
+      "source": "github",
+      "repo": "revtelligent/platform-marketplace"
+    }
+  ],
+  "extraKnownMarketplaces": {
+    "platform": {
+      "source": {
+        "source": "github",
+        "repo": "revtelligent/platform-marketplace"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "relay-connect@platform": true,
+    "operations-suite@platform": true
+  },
+  "env": {
+    "RELAY_URL": "https://relay-platform.revtelligent.cloud",
+    "RELAY_MCP_URL": "https://relay-platform.revtelligent.cloud/mcp"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(${CLAUDE_PLUGIN_ROOT}/skills/setup/scripts/relay-setup.sh *)",
+      "Bash(${HOME}/.agents/skills/setup/scripts/relay-setup.sh *)"
+    ]
+  }
+}

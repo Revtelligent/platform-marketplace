@@ -1,0 +1,10 @@
+{
+  "name": "operations-suite",
+  "version": "1.0.0",
+  "description": "Operations team AI tools: ClickUp task management and project tracking.",
+  "author": {
+    "name": "Revtelligent",
+    "email": "support@revtelligent.com"
+  },
+  "keywords": ["operations", "clickup", "tasks"]
+}
