@@ -31,6 +31,11 @@ For Claude Desktop bundle-based distribution, build `.mcpb` files with:
 ./deploy/pack-mcpb.sh --all
 ```
 
+Then verify MCP is active in a new chat:
+
+- Run `list_workflows`
+- If tools are missing in Claude Desktop, add a custom connector to `https://relay-platform.revtelligent.cloud/mcp`
+
 ### Codex / Gemini CLI
 
 ```bash
@@ -41,6 +46,10 @@ For Claude Desktop bundle-based distribution, build `.mcpb` files with:
 ./deploy/install.sh --plugin relay-connect
 ```
 
+Then verify in a new session:
+
+- Run `list_workflows`
+
 See `deploy/INSTALL.md` for detailed instructions.
 
 ## Plugins
@@ -48,6 +57,8 @@ See `deploy/INSTALL.md` for detailed instructions.
 ### relay-connect
 
 Base connectivity plugin installed for all users. Verifies Relay MCP connectivity and saves configuration.
+
+Important: `/setup` stores Relay URL and runs diagnostics. It does not create connectors by itself.
 
 **Skills:**
 - `setup` — Bootstrap Relay connection (`/setup` or "Set up my Relay connection")

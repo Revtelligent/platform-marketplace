@@ -20,9 +20,20 @@ MCP tools use OAuth automatically via `mcp-remote`. An optional script config st
 - A Relay account (provided by your IT admin or Revtelligent)
 - Your organization's Relay base URL
 
+## Environment Prerequisite (Required)
+
+Before running `/setup`, Relay MCP must already be configured in the current agent.
+`/setup` saves URL/config for diagnostics, but it does not create connectors by itself.
+
+| Environment | Required MCP setup | Quick test |
+|-------------|--------------------|------------|
+| Claude Code / Claude Desktop | Install `relay-connect` from marketplace. If Relay tools still do not appear, add a Relay custom connector to `<base-url>/mcp`. | Ask the agent to run `list_workflows`. |
+| Codex | Run `./deploy/install.sh --plugin relay-connect --agents codex` (or add `[mcp_servers.relay]` manually). | Run `list_workflows`. |
+| Gemini CLI | Run `./deploy/install.sh --plugin relay-connect --agents gemini-cli` (or add `mcpServers.relay` manually). | Run `list_workflows`. |
+
 ## Setup Flow
 
-### Step 1: Check existing connection
+### Step 1: Check existing saved configuration
 
 Run the setup script to check for saved configuration:
 
@@ -77,6 +88,9 @@ Expected output when healthy:
 ```
 
 If the endpoint fails, load `references/troubleshooting.md` for diagnostic steps.
+
+If health check fails but `list_workflows` succeeds, treat MCP connectivity as working.
+In restricted/sandboxed environments, the health script may not have the same network path as MCP tool calls.
 
 ### Step 5: Confirm success
 

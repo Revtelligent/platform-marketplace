@@ -18,6 +18,10 @@ Use the plugin marketplace (no manual install needed):
 
 Both plugins will appear for installation. Install `relay-connect` first (required), then `operations-suite`.
 
+After installing `relay-connect`, open a new chat and run:
+
+- `list_workflows`
+
 ## Claude Desktop
 
 1. Open **Settings → Add marketplace from GitHub**
@@ -25,7 +29,13 @@ Both plugins will appear for installation. Install `relay-connect` first (requir
 3. Install `relay-connect` (required for all other plugins)
 4. Install `operations-suite` for task management
 
-Plugins include MCP configuration automatically — no manual config editing needed.
+After installing `relay-connect`, open a new chat and run:
+
+- `list_workflows`
+
+If Relay MCP tools still do not appear, add a custom connector pointing to:
+
+- `https://relay-platform.revtelligent.cloud/mcp`
 
 ### Claude Desktop (MCPB Bundle Path)
 
@@ -81,6 +91,7 @@ Use the install script:
    ```
 
 3. Restart Codex.
+4. Run `list_workflows` in a new session to verify MCP connectivity.
 
 ## Gemini CLI
 
@@ -111,21 +122,24 @@ Use the install script:
    ```
 
 3. Restart Gemini CLI.
+4. Run `list_workflows` in a new session to verify MCP connectivity.
 
 ## Verification
 
-After installation, verify the connection:
+After installation, verify the connection in this order:
 
-1. **Check Relay connectivity:**
+1. **MCP tool test (source of truth):**
+   - Run `list_workflows`
+   - If it works, OAuth + MCP connectivity is working end-to-end
+
+2. **Optional setup diagnostics:**
    ```bash
    plugins/relay-connect/skills/setup/scripts/relay-setup.sh health
    ```
+   - If health check fails but `list_workflows` succeeds, continue.
+   - In some environments, health checks run with stricter network egress than MCP runtime calls.
 
-2. **Test MCP tools:** In your agent, try:
-   - "List available workflows" — should call `list_workflows`
-   - "What tasks are in the current sprint?" — should call `send_message`
-
-3. **Check skills are loaded:**
+3. **Skill availability check:**
    - Claude Code/Desktop: Plugins appear after marketplace install
    - Codex/Gemini: Skills discovered automatically from `~/.agents/skills/`
 

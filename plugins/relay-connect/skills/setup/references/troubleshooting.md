@@ -34,6 +34,14 @@ ${CLAUDE_PLUGIN_ROOT:-$HOME/.agents}/skills/setup/scripts/relay-setup.sh save ht
 curl -I https://relay.your-company.revtelligent.com/.well-known/oauth-protected-resource
 ```
 
+### Health check fails but MCP tools work
+
+**Symptom:** `/setup` health check reports unreachable, but `list_workflows` works.
+
+**Cause:** Health checks run from a local/sandboxed execution context that may have stricter outbound rules than the MCP runtime path.
+
+**Fix:** Treat successful MCP tool execution (`list_workflows`) as the source of truth. Keep the saved Relay URL and continue.
+
 ### OAuth login issues
 
 **Symptom:** OAuth flow opens browser but doesn't complete, or loops back to login
@@ -74,8 +82,8 @@ curl -I https://relay.your-company.revtelligent.com/.well-known/oauth-protected-
 4. Run `claude --debug` to see MCP server initialization
 
 **For Claude Desktop:**
-1. Check `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
-2. Verify the `relay` MCP server entry exists
+1. Verify `relay-connect` plugin is installed from the marketplace
+2. If tools still do not appear, add a Relay custom connector to `<base-url>/mcp`
 3. Restart Claude Desktop after config changes
 
 **For Codex:**
