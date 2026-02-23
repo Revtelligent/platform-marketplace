@@ -1,49 +1,50 @@
 # Workspace Configuration
 
 > Pre-configured workspace structure loaded before every operation.
-> Edit the names below to match your ClickUp workspace.
 
 ## Workspace
 
-- **Workspace Name:** My Organization
+- **Workspace Name:** Revtelligent
 - **Primary Space:** Engineering
 
 ## Spaces
 
 | Space Name | Purpose |
 |------------|---------|
-| Engineering | Main engineering/operations work |
-| Operations | Secondary workflows |
+| Engineering | Main engineering and product work |
+| Customers | Customer-specific projects (one folder per customer) |
 
-## Folders and Lists (Name Paths)
+## Known Folders and Lists
 
-Use full paths when list names can repeat.
+Use full `Space / Folder / List` paths when list names could repeat.
 
 | Path | Purpose | Default |
 |------|---------|---------|
-| Engineering / Sprint / Current Sprint | Active sprint or current work | Yes |
-| Engineering / Sprint / Backlog | Upcoming work | No |
-| Engineering / Sprint / Bugs | Defects and incidents | No |
+| Engineering / Relay / Work | Active engineering tasks | Yes |
 
 ## Default Destination
 
-When user does not specify a location, use:
-- **Default Path:** `Engineering / Sprint / Current Sprint`
+When the user does not specify a location, use:
+- **Default Path:** `Engineering / Relay / Work`
+
+## Dynamic Discovery
+
+Not all folders and lists are pre-configured. The **Customers** space has many folders (one per customer) with varying list names.
+
+When the user references a list or folder not shown above:
+1. Ask Relay to query the ClickUp API for the actual structure (see discovery messages in `api-operations.md`).
+2. Present the options to the user and let them pick.
+3. Do NOT guess or hallucinate folder/list names.
 
 ## Disambiguation Rules
 
-- If more than one list shares the same name (for example `Work`), always ask for `Space / Folder / List`.
+- If more than one list shares the same name (for example `Work`), always ask for the full `Space / Folder / List` path.
 - Never infer by ID.
 - Confirm the resolved path before write operations.
 
 ## Team Members
 
-Use names and ClickUp usernames for assignment. IDs are optional and should not be required by the skill.
-
-| Name | ClickUp Username | Role | Default Assignee |
-|------|------------------|------|------------------|
-| [First Last] | [username] | [role] | [yes/no] |
-| [First Last] | [username] | [role] | [yes/no] |
+Resolve assignees dynamically via the ClickUp API. When the user mentions a name, include it in the Relay message and let ClickUp match it.
 
 ## Project Aliases
 
@@ -51,8 +52,6 @@ Map common shorthand to name-based paths.
 
 | Alias | Maps To | Type |
 |-------|---------|------|
-| sprint | `Engineering / Sprint / Current Sprint` | list |
-| bugs | `Engineering / Sprint / Bugs` | list |
-| backlog | `Engineering / Sprint / Backlog` | list |
+| work | `Engineering / Relay / Work` | list |
 
 > **Priority levels:** See `task-creation-guide.md` for the full priority table.

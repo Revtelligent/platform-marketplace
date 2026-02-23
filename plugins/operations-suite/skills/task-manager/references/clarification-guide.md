@@ -21,8 +21,10 @@ If a required field is missing, you MUST ask before proceeding.
 **Create Task — missing title:**
 > What should the task be called?
 
-**Create Task — missing list (and no default configured):**
+**Create Task — missing list (and destination is NOT Engineering work):**
 > Which list should I create this task in? I can look up your available lists if you're not sure.
+
+**Note:** If the user doesn't specify a list and the task is general engineering work, use the default: `Engineering / Relay / Work`. Do NOT ask.
 
 **Update — missing task ID:**
 > Which task should I update? You can provide a task ID (e.g., #abc123) or I can search for it by name.
@@ -37,15 +39,14 @@ If a required field is missing, you MUST ask before proceeding.
 After parsing what the user provided, ask ONE combined question for all missing optional fields that would improve the task.
 
 **Example — user says "Create a task to fix the login bug":**
-> I'll create "Fix the login bug". A few quick questions:
-> - **List:** Which list? (default: [current sprint from workspace-config])
+> I'll create "Fix the login bug" in **Engineering / Relay / Work**. A few quick questions:
 > - **Priority:** How urgent is this? (default: Normal)
 > - **Assignee:** Should I assign this to someone?
 >
 > Or just say "go" to use the defaults.
 
 For bulk task creation, include destination and default status in the same question:
-> I can create these in **[Space / Folder / List]** with default status **OPEN**. Proceed or adjust?
+> I can create these in **Engineering / Relay / Work** with default status **OPEN**. Proceed or adjust?
 
 ### Tier 3: Confirmation — Before Any Write
 
@@ -54,7 +55,7 @@ Always present a summary before executing write operations.
 **Create task confirmation:**
 > Ready to create:
 > - **Task:** [title]
-> - **List:** [list name]
+> - **List:** [list path]
 > - **Priority:** [level]
 > - **Assignee:** [name or "Unassigned"]
 > - **Due:** [date or "None"]
@@ -80,8 +81,8 @@ Always present a summary before executing write operations.
 ## Progressive Collection Flow
 
 1. **Parse first** — Extract everything the user already provided
-2. **Check workspace-config** — Fill defaults from reference file
-3. **Resolve by names** — Confirm `Space / Folder / List` path (never rely on ID defaults)
+2. **Check workspace-config** — Fill defaults from reference file (default: `Engineering / Relay / Work`)
+3. **Resolve by names** — Confirm `Space / Folder / List` path only if outside the default (never rely on ID defaults)
 4. **Ask once** — Combine all missing required + recommended optional into ONE question
 5. **Confirm** — Show summary, wait for approval
 6. **Execute** — Call the appropriate operation

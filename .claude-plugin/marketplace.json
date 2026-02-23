@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Platform AI-powered workflow plugins by Revtelligent",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -24,7 +24,7 @@
       "name": "operations-suite",
       "source": "./plugins/operations-suite",
       "description": "Operations team tools: ClickUp task management and project tracking.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": { "name": "Revtelligent" },
       "category": "operations",
       "keywords": ["operations", "clickup", "tasks"],

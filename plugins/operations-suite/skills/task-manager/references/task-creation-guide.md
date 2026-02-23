@@ -37,7 +37,7 @@ Security audit identified unprotected endpoints vulnerable to brute force attack
 | Priority | Name | When to Use |
 |----------|------|-------------|
 | 1 | Urgent | Production outage, security vulnerability, data loss risk |
-| 2 | High | Sprint commitment, blocking other work, SLA deadline |
+| 2 | High | Blocking other work, SLA deadline, committed deliverable |
 | 3 | Normal | Standard feature work, routine bugs, improvements |
 | 4 | Low | Nice-to-have, tech debt cleanup, minor polish |
 
