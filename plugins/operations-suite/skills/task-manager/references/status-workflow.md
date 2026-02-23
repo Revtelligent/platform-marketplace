@@ -1,7 +1,7 @@
 # Task Status Workflow
 
-> Customize this file with your organization's task status lifecycle.
-> This is loaded by the task-manager skill to validate status transitions.
+> Valid statuses and transition rules. Loaded before every operation to validate status names.
+> Edit the status names below to match your ClickUp space exactly.
 
 ## IMPORTANT: Case Sensitivity
 
@@ -17,9 +17,6 @@ For example, `IN PROGRESS` is NOT the same as `In Progress` or `in progress`.
 | REVIEW | Active | Awaiting code review or approval |
 | COMPLETE | Closed | Work is done and verified |
 | BLOCKED | Active | Cannot proceed, dependency issue |
-
-<!-- IMPORTANT: Replace the status names above with the EXACT values from your ClickUp space. -->
-<!-- To find exact names: ClickUp > Space Settings > Statuses -->
 
 ## Valid Transitions
 
@@ -48,25 +45,8 @@ These transitions should be prevented:
 
 ## Per-Space Variations
 
-<!-- If different spaces have different status names, document them here -->
+If different spaces have different status names, document them here.
 
 | Space | Status Variations |
 |-------|-------------------|
-| Platform Engineering | Uses default statuses above |
-
-## Status Colors
-
-| Status | Color | Hex |
-|--------|-------|-----|
-| OPEN | Gray | #d3d3d3 |
-| IN PROGRESS | Blue | #4194f6 |
-| REVIEW | Purple | #a855f7 |
-| COMPLETE | Green | #6bc950 |
-| BLOCKED | Red | #f44336 |
-
-## Automation Notes
-
-<!-- Optional: describe any ClickUp automations that affect status -->
-- Tasks assigned to a user automatically move from OPEN to IN PROGRESS
-- Merged PRs automatically move linked tasks to REVIEW
-- Approved reviews automatically move to COMPLETE
+| Engineering | Uses default statuses above |

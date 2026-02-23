@@ -27,6 +27,11 @@ If a required field is missing, you MUST ask before proceeding.
 **Update — missing task ID:**
 > Which task should I update? You can provide a task ID (e.g., #abc123) or I can search for it by name.
 
+**Ambiguous destination list name (required):**
+> I found multiple lists named "[list]". Which exact path should I use?
+> - [Space A / Folder X / List]
+> - [Space B / Folder Y / List]
+
 ### Tier 2: Proactive Ask — Improve Quality
 
 After parsing what the user provided, ask ONE combined question for all missing optional fields that would improve the task.
@@ -38,6 +43,9 @@ After parsing what the user provided, ask ONE combined question for all missing 
 > - **Assignee:** Should I assign this to someone?
 >
 > Or just say "go" to use the defaults.
+
+For bulk task creation, include destination and default status in the same question:
+> I can create these in **[Space / Folder / List]** with default status **OPEN**. Proceed or adjust?
 
 ### Tier 3: Confirmation — Before Any Write
 
@@ -56,6 +64,13 @@ Always present a summary before executing write operations.
 **Status update confirmation:**
 > Moving **[task name]** from [current status] → [new status]. Proceed?
 
+**Update details confirmation:**
+> Updating **[task name]**:
+> - Priority: Normal → **High**
+> - Assignee: +Sarah
+>
+> Proceed?
+
 **Comment confirmation:**
 > Posting to **[task name]**:
 > > [comment preview]
@@ -66,9 +81,10 @@ Always present a summary before executing write operations.
 
 1. **Parse first** — Extract everything the user already provided
 2. **Check workspace-config** — Fill defaults from reference file
-3. **Ask once** — Combine all missing required + recommended optional into ONE question
-4. **Confirm** — Show summary, wait for approval
-5. **Execute** — Call the appropriate operation
+3. **Resolve by names** — Confirm `Space / Folder / List` path (never rely on ID defaults)
+4. **Ask once** — Combine all missing required + recommended optional into ONE question
+5. **Confirm** — Show summary, wait for approval
+6. **Execute** — Call the appropriate operation
 
 ## Session Context
 

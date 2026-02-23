@@ -1,67 +1,58 @@
 # Workspace Configuration
 
-> Customize this file with your organization's ClickUp workspace details.
-> This is loaded by the task-manager skill for workspace-aware operations.
+> Pre-configured workspace structure loaded before every operation.
+> Edit the names below to match your ClickUp workspace.
 
 ## Workspace
 
-- **Workspace Name:** Platform
-- **Workspace ID:** <!-- Fill in your ClickUp workspace ID -->
+- **Workspace Name:** My Organization
+- **Primary Space:** Engineering
 
 ## Spaces
 
-| Space | ID | Purpose |
-|-------|----|---------|
-| Platform Engineering | <!-- space ID --> | Main workspace for engineering and operations |
+| Space Name | Purpose |
+|------------|---------|
+| Engineering | Main engineering/operations work |
+| Operations | Secondary workflows |
 
-## Folders
+## Folders and Lists (Name Paths)
 
-- **Active Development** — Current sprint work
-- **Backlog** — Upcoming work items
-- **Operations** — Ongoing operational tasks
+Use full paths when list names can repeat.
 
-## Lists
+| Path | Purpose | Default |
+|------|---------|---------|
+| Engineering / Sprint / Current Sprint | Active sprint or current work | Yes |
+| Engineering / Sprint / Backlog | Upcoming work | No |
+| Engineering / Sprint / Bugs | Defects and incidents | No |
 
-| List | Space | Purpose |
-|------|-------|---------|
-| Sprint [Current] | Platform Engineering | Active sprint tasks |
-| Backlog | Platform Engineering | Prioritized upcoming work |
-| Bugs | Platform Engineering | Bug reports and fixes |
-| Maintenance | Platform Engineering | Routine maintenance tasks |
+## Default Destination
 
-## Default List
+When user does not specify a location, use:
+- **Default Path:** `Engineering / Sprint / Current Sprint`
 
-When no list is specified, use: **Sprint [Current]**
+## Disambiguation Rules
 
-## Current Sprint
-
-- **Sprint Name:** <!-- e.g., Sprint 15 -->
-- **Sprint List ID:** <!-- Fill in the ClickUp list ID -->
+- If more than one list shares the same name (for example `Work`), always ask for `Space / Folder / List`.
+- Never infer by ID.
+- Confirm the resolved path before write operations.
 
 ## Team Members
 
-<!-- Fill in your team members with their ClickUp user IDs for accurate assignment -->
+Use names and ClickUp usernames for assignment. IDs are optional and should not be required by the skill.
 
-| Name | ClickUp Username | ClickUp User ID | Role |
-|------|-----------------|-----------------|------|
-| [First Last] | [username] | [user_id] | [role] |
-| [First Last] | [username] | [user_id] | [role] |
+| Name | ClickUp Username | Role | Default Assignee |
+|------|------------------|------|------------------|
+| [First Last] | [username] | [role] | [yes/no] |
+| [First Last] | [username] | [role] | [yes/no] |
 
 ## Project Aliases
 
-<!-- Common shorthand names that map to specific lists or spaces -->
+Map common shorthand to name-based paths.
 
 | Alias | Maps To | Type |
 |-------|---------|------|
-| sprint | Sprint [Current] | list |
-| bugs | Bugs | list |
-| backlog | Backlog | list |
+| sprint | `Engineering / Sprint / Current Sprint` | list |
+| bugs | `Engineering / Sprint / Bugs` | list |
+| backlog | `Engineering / Sprint / Backlog` | list |
 
-## Priority Levels
-
-| Level | Name | When to Use |
-|-------|------|------------|
-| 1 | Urgent | Production issues, security vulnerabilities |
-| 2 | High | Sprint commitments, blocking issues |
-| 3 | Normal | Standard work items |
-| 4 | Low | Nice-to-haves, minor improvements |
+> **Priority levels:** See `task-creation-guide.md` for the full priority table.

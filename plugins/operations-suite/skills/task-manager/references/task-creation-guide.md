@@ -76,6 +76,17 @@ Parent: "Implement User Authentication"
     └── Deploy to staging + production
 ```
 
+## Default Status Pattern
+
+Use fixed workflow defaults unless the user overrides:
+
+- New task/subtask default: `OPEN`
+- In-flight work: `IN PROGRESS`
+- Ready for handoff/review: `REVIEW`
+- Completed checklist items: `COMPLETE`
+
+Status names are case-sensitive and must match `status-workflow.md`.
+
 ## Bulk Task File Format
 
 When creating multiple tasks from a file, use this markdown format:
@@ -102,3 +113,15 @@ When creating multiple tasks from a file, use this markdown format:
 - Indented `- [ ]` = Subtasks (created with parent reference)
 - `Priority: N` parsed from inline metadata
 - `Estimate: Nh` or `Nd` parsed as time estimate
+
+## Bulk Creation Execution Pattern
+
+Follow this order:
+
+1. Parse file and validate title + phases exist.
+2. Resolve destination by `Space / Folder / List` names.
+3. Confirm hierarchy + destination + statuses before creating.
+4. Create parent tasks first, then phase subtasks, then item subtasks.
+5. Apply `What / Why / Outcome` description format to each created task item.
+6. Mark pre-completed checklist items as `COMPLETE`.
+7. Return a grouped summary of created task IDs and URLs.
