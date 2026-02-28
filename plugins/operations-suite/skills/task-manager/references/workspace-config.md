@@ -32,7 +32,7 @@ When the user does not specify a location, use:
 Not all folders and lists are pre-configured. The **Customers** space has many folders (one per customer) with varying list names.
 
 When the user references a list or folder not shown above:
-1. Ask Relay to query the ClickUp API for the actual structure (see discovery messages in `api-operations.md`).
+1. Use `clickup_query` to discover the actual structure (see discovery patterns in `operations-reference.md`).
 2. Present the options to the user and let them pick.
 3. Do NOT guess or hallucinate folder/list names.
 
@@ -54,4 +54,4 @@ Map common shorthand to name-based paths.
 |-------|---------|------|
 | work | `Engineering / Relay / Work` | list |
 
-> **Priority levels:** See `task-creation-guide.md` for the full priority table.
+> **Priority levels:** See the Priority Reference table in `SKILL.md`.
